@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#3f3f46",
-    opacity: 0.3,
+    opacity: 0.35,
   },
   buttonText: {
     color: "white",

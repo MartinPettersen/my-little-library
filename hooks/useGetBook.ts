@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { BookType, ResponseType } from "../utils/types";
 
 
 export const useGetBook = (ean: string) => {
 
-    const [bookInformation, setBookInformation] = useState<any | null>(null);
+    const [bookInformation, setBookInformation] = useState<ResponseType | null>(null);
 
     useEffect(() => {
         const fetchBookInformation = async () => {

@@ -69,7 +69,7 @@ export type BookType = {
   };
   
 export type ResponseType = {
-    docs: Document[];
+    docs: BookType[];
     numFound: number;
     numFoundExact: boolean;
     num_found: number;

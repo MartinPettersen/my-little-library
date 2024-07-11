@@ -21,9 +21,11 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 100,
-    borderRadius: 10,
+    borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#3f3f46",
+    opacity: 0.3,
   },
   buttonText: {
     color: "white",

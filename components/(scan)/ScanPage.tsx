@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { CameraView, Camera } from "expo-camera";
 import ScanButton from "./ScanButton";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../utils/types";
 
 type ScanProps = {
   type: string;
@@ -11,6 +13,8 @@ type ScanProps = {
 const ScanPage = () => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
 
   useEffect(() => {
     const getCameraPermissions = async () => {
@@ -29,6 +33,7 @@ const ScanPage = () => {
     console.log(type);
     console.log(data);
     setScanned(true);
+    navigation.navigate("Book", {type, data});
 
   };
 

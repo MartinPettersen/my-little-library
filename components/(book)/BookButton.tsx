@@ -8,7 +8,7 @@ type Props = {
 
 const BookButton = ({buttonText, action}: Props) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={() => action()}>
+    <TouchableOpacity style={[styles.button, styles.shadow]} onPress={() => action()}>
         <Text style={styles.buttonText}>{buttonText}</Text>
       </TouchableOpacity>
   )
@@ -31,5 +31,14 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 23,
     },
+  shadow: {
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 3, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   });
 export default BookButton

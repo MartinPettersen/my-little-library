@@ -16,11 +16,11 @@ const BookPage = ({ type, data }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text>{type} {data}</Text>
+      <Text style={styles.text}>{type} {data}</Text>
       {!bookInformation ? 
           <Text>Loading...</Text>          
           :<>
-          <Text>{bookInformation?.docs[0].author_name}</Text>
+          <Text style={styles.text}>{bookInformation?.docs[0].author_name}</Text>
           
           <BookButton buttonText="Add To Read" action={() => console.log("added to read")}/>
           <BookButton buttonText="Add To Owned" action={() => console.log("added to owned")}/>
@@ -39,7 +39,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "white",
   },
+  text: {
+    color: "#27272a"
+  }
 });
 
 export default BookPage;

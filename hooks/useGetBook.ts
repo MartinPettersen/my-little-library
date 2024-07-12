@@ -9,7 +9,7 @@ export const useGetBook = (ean: string) => {
     useEffect(() => {
         const fetchBookInformation = async () => {
             try {
-                const url = `https://openlibrary.org/search.json?q=9780465023943`
+                const url = `https://openlibrary.org/search.json?q=${ean}`
 
                 const res = await fetch(url);
                 const data = await res.json();

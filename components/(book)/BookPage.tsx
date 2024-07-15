@@ -26,6 +26,10 @@ const BookPage = ({ type, data }: Props) => {
             action={() => console.log("added to read")}
           />
           <BookButton
+            buttonText="Want To Read"
+            action={() => console.log("added to Want to read")}
+          />
+          <BookButton
             buttonText="Add To Owned"
             action={() => console.log("added to owned")}
           />

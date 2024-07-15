@@ -1,6 +1,7 @@
 export type RootStackParamList = {
     Book: {type: string, data: string};
     Scan: undefined;
+    Home: undefined;
 };
 
 export type BookType = {

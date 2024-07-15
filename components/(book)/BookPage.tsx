@@ -4,6 +4,7 @@ import { useGetBook } from "../../hooks/useGetBook";
 import BookButton from "./BookButton";
 import BackButton from "../(utils)/BackButton";
 import BookDisplay from "./BookDisplay";
+import SecondaryInformation from "./SecondaryInformation";
 
 type Props = {
   type: string;
@@ -28,8 +29,8 @@ const BookPage = ({ type, data }: Props) => {
             buttonText="Add To Owned"
             action={() => console.log("added to owned")}
           />
-
           <BackButton />
+          <SecondaryInformation bookInfo={bookInformation} />
         </>
       )}
     </View>

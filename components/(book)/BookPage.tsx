@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useGetBook } from "../../hooks/useGetBook";
 import BookButton from "./BookButton";
 import BackButton from "../(utils)/BackButton";
@@ -15,7 +15,7 @@ const BookPage = ({ type, data }: Props) => {
   const bookInformation = useGetBook(data);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {!bookInformation ? (
         <Text>Loading...</Text>
       ) : (
@@ -33,13 +33,12 @@ const BookPage = ({ type, data }: Props) => {
           <SecondaryInformation bookInfo={bookInformation} />
         </>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "white",

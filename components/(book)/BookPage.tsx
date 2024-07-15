@@ -11,23 +11,27 @@ type Props = {
 };
 
 const BookPage = ({ type, data }: Props) => {
-
-    const bookInformation = useGetBook(data)
+  const bookInformation = useGetBook(data);
 
   return (
     <View style={styles.container}>
-      {!bookInformation ? 
-          <Text>Loading...</Text>          
-          :<>
-          <BookDisplay bookInfo={bookInformation}/>
-          <BookButton buttonText="Add To Read" action={() => console.log("added to read")}/>
-          <BookButton buttonText="Add To Owned" action={() => console.log("added to owned")}/>
+      {!bookInformation ? (
+        <Text>Loading...</Text>
+      ) : (
+        <>
+          <BookDisplay bookInfo={bookInformation} />
+          <BookButton
+            buttonText="Add To Read"
+            action={() => console.log("added to read")}
+          />
+          <BookButton
+            buttonText="Add To Owned"
+            action={() => console.log("added to owned")}
+          />
 
-            <BackButton />
-          </>
-    }
-
-
+          <BackButton />
+        </>
+      )}
     </View>
   );
 };
@@ -40,8 +44,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   text: {
-    color: "#27272a"
-  }
+    color: "#27272a",
+  },
 });
 
 export default BookPage;

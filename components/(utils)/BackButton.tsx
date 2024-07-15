@@ -11,7 +11,7 @@ const BackButton = () => {
       style={[styles.button, styles.shadow]}
       onPress={() => navigation.goBack()}
     >
-      <Text style={styles.buttonText}>{"Tilbake"}</Text>
+      <Text style={styles.buttonText}>{"Back"}</Text>
     </TouchableOpacity>
   );
 };

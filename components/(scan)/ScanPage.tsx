@@ -55,9 +55,9 @@ const ScanPage = () => {
       />
       <View style={styles.buttonContainer}>
         {scanned ? (
-          <ScanButton buttonText="Skan" action={() => resetScanner()} />
+          <ScanButton buttonText="Scan" action={() => resetScanner()} />
         ) : (
-          <ScanButton buttonText="Skanner..." action={() => setScanned(true)} />
+          <ScanButton buttonText="Scanning..." action={() => setScanned(true)} />
         )}
       </View>
     </View>

@@ -8,8 +8,9 @@ type Props = {
 
 type RenderProp = {
     item: string;
-
 }
+
+const imageSize = 300; 
 
 const BookCovers = ({bookInfo}: Props) => {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -17,7 +18,6 @@ const BookCovers = ({bookInfo}: Props) => {
 
 
     const renderBookCoverItem = ({item}: RenderProp) => {
-        setCurrentImage(item)
         return (<Image
           style={styles.image}
           source={{
@@ -37,6 +37,14 @@ const BookCovers = ({bookInfo}: Props) => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={<Text>No book cover found</Text>}
+        onScroll={(event) => {
+          const index = Math.floor(event.nativeEvent.contentOffset.x / imageSize);
+          if (index !== currentIndex) {
+            setCurrentIndex(index);
+            setCurrentImage(bookInfo.docs[0].isbn[index])
+
+          }
+        }}
       />
     </View>
   )
@@ -46,14 +54,14 @@ const styles = StyleSheet.create({
   image: {
     aspectRatio: 1,
 
-    height: 300, 
+    height: imageSize, 
 
     backgroundColor: "black",
   },
   imageContainer: {
     aspectRatio: 1,
 
-    height: 300, 
+    height: imageSize, 
 
   }
 })

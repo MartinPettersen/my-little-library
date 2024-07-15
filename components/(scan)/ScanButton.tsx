@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 16,
   },
   blurContainer: {
     flex: 1,

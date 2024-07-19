@@ -14,8 +14,10 @@ type Props = {
 const BookPage = ({ type, data }: Props) => {
   const bookInformation = useGetBook(data);
 
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <Text>Hei</Text>
       {!bookInformation ? (
         <Text>Loading...</Text>
       ) : (
@@ -33,7 +35,6 @@ const BookPage = ({ type, data }: Props) => {
             buttonText="Add To Owned"
             action={() => console.log("added to owned")}
           />
-          <BackButton />
           <SecondaryInformation bookInfo={bookInformation} />
         </>
       )}

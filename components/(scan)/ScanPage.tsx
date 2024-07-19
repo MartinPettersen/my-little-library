@@ -30,8 +30,6 @@ const ScanPage = () => {
   };
 
   const handleBarCodeScanned = ({ type, data }: ScanProps) => {
-    console.log(type);
-    console.log(data);
     setScanned(true);
     navigation.navigate("Book", {type, data});
 

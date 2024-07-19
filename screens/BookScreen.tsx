@@ -9,6 +9,7 @@ type BookRouteProp = RouteProp<RootStackParamList, "Book">;
 const BookScreen = () => {
   const route = useRoute<BookRouteProp>();
   const { type, data } = route.params;
+
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <BookPage type={type} data={data} />

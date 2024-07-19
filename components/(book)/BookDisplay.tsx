@@ -10,7 +10,6 @@ type Props = {
 
 const BookDisplay = ({ bookInfo }: Props) => {
 
-  console.log(bookInfo.docs)
 
   return (
     <View style={styles.container}>

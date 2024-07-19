@@ -2,10 +2,14 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { RootStackParamList } from "../utils/types";
+import { addBook, createTables } from "../database/database";
 
 const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  createTables()
+  addBook(2346345,true,false,false)
+  
   return (
     <View style={styles.container}>
       <TouchableOpacity

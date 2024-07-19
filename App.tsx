@@ -1,9 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import ScanScreen from "./screens/ScanScreen";
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import BookScreen from "./screens/BookScreen";
 import React from "react";
 import AppNavigation from "./navigation/AppNavigation";
 

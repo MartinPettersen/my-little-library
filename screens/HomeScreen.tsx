@@ -23,7 +23,7 @@ const HomeScreen = () => {
       
       <TouchableOpacity
         style={[styles.button, styles.shadow]}
-        onPress={() => navigation.navigate("Scan")}
+        onPress={() => navigation.navigate("HaveRead")}
       >
         <Text style={styles.buttonText}>Books i have Read</Text>
       </TouchableOpacity>

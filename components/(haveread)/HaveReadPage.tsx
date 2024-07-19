@@ -11,7 +11,7 @@ type RenderProp = {
   };
   
 
-const WishListPage = () => {
+const HaveReadPage = () => {
 
     const bookList: TempProps[] = [
         {
@@ -65,14 +65,14 @@ const WishListPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>My Wish List</Text>
+      <Text style={styles.text}>Books I have Read</Text>
       <FlatList
         data={bookList}
         renderItem={renderBookCoverItem}
         keyExtractor={(item: TempProps) => item.id.toString()}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        ListEmptyComponent={<Text>No Wish List found</Text>}
+        ListEmptyComponent={<Text>Looks like you haven't read any books</Text>}
       />
     </View>
   )
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
       margin: 24,
     }
   });
-export default WishListPage
+export default HaveReadPage

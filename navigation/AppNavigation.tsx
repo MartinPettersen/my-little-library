@@ -10,6 +10,7 @@ import { BlurView } from "expo-blur";
 import { StyleSheet } from "react-native";
 import LibraryScreen from "../screens/LibraryScreen";
 import WishListScreen from "../screens/WishListScreen";
+import HaveReadScreen from "../screens/HaveReadScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,7 +22,7 @@ const StackScreen = () => (
     <Stack.Screen name="Scan" component={ScanScreen} />
     <Stack.Screen name="Library" component={LibraryScreen} />
     <Stack.Screen name="WishList" component={WishListScreen} />
-
+    <Stack.Screen name="HaveRead" component={HaveReadScreen} />
   </Stack.Navigator>
 );
 

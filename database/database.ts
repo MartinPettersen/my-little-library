@@ -24,9 +24,7 @@ export const addBook = async (isbn: number, owned: boolean, read: boolean, want:
 }
 
 export const getAllBooks = async () => {
-    console.log("i")
     const allRows = await db.getAllAsync('SELECT * FROM books');
-    console.log("j")
     
     console.log(allRows)
     return allRows

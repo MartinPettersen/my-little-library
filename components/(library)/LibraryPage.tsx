@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
+import { getAllBooks } from "../../database/database";
 
 type RenderProp = {
-  item: TempProps;
+  item: BookMarkType;
 };
 
 type TempProps = {
@@ -10,41 +11,33 @@ type TempProps = {
   isbn: string;
 };
 
+type BookMarkType = {
+  id: number;
+  isbn: number;
+  owned: number;
+  read: number;
+  want: number;
+};
+
 const LibraryPage = () => {
-  const bookList: TempProps[] = [
-    {
-      id: 1,
-      isbn: "9781843547051",
-    },
-    {
-      id: 2,
-      isbn: "9781299003743",
-    },
-    {
-      id: 3,
-      isbn: "0307424731",
-    },
-    {
-      id: 4,
-      isbn: "9781433200120",
-    },
-    {
-      id: 5,
-      isbn: "0375726268",
-    },
-    {
-      id: 6,
-      isbn: "9781838959708",
-    },
-    {
-      id: 7,
-      isbn: "9781470824419",
-    },
-    {
-      id: 8,
-      isbn: "9781838959708",
-    },
-  ];
+
+  const [bookList, setBookList] = useState([])
+
+  useEffect(() => {
+
+    const fetchBooks = async() => {
+
+      
+      const test = await getAllBooks();
+      setBookList(test)
+      console.log(test);
+    }
+
+    fetchBooks()
+  
+  },[])
+
+
 
   const renderBookCoverItem = ({ item }: RenderProp) => {
     return (
@@ -66,7 +59,7 @@ const LibraryPage = () => {
       <FlatList
         data={bookList}
         renderItem={renderBookCoverItem}
-        keyExtractor={(item: TempProps) => item.id.toString()}
+        keyExtractor={(item: BookMarkType) => item.id.toString()}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={<Text>No book cover found</Text>}
@@ -94,7 +87,7 @@ const styles = StyleSheet.create({
   },
   displayContainer: {
     margin: 24,
-  }
+  },
 });
 
 export default LibraryPage;

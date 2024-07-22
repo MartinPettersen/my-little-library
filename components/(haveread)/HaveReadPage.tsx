@@ -16,7 +16,6 @@ const HaveReadPage = () => {
       const fetchBooks = async () => {
         const books = await getAllBooks();
         setBookList(books);
-        console.log(books);
       };
 
       fetchBooks();

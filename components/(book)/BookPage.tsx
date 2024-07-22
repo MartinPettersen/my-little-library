@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useGetBook } from "../../hooks/useGetBook";
 import BookButton from "./BookButton";
@@ -12,6 +12,7 @@ import {
   updateBookRead,
   updateBookWant,
 } from "../../database/database";
+import { BookMark } from "../../utils/types";
 
 type Props = {
   type: string;
@@ -20,6 +21,8 @@ type Props = {
 
 const BookPage = ({ type, data }: Props) => {
   const bookInformation = useGetBook(data);
+
+  const [libraryBook,setLibraryBook] = useState<BookMark | null>(null)
 
   const handleUpdateBook = async (subject: string) => {
     const book = await getBook(parseInt(data));
@@ -38,7 +41,23 @@ const BookPage = ({ type, data }: Props) => {
     if (subject == "own") {
       updateBookOwnership(book[0].id, !book[0].owned);
     }
+    
   };
+
+  useEffect(() => {
+    const checkForBook = async() => {
+
+      const book = await getBook(parseInt(data));
+      
+      if (book.length > 0) {
+        console.log("here")
+        setLibraryBook(book[0])
+      }
+    }
+
+    checkForBook()
+
+  }, [])
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -49,15 +68,15 @@ const BookPage = ({ type, data }: Props) => {
         <>
           <BookDisplay bookInfo={bookInformation} />
           <BookButton
-            buttonText="Add To Read"
+            buttonText={(libraryBook !=  null && libraryBook!.read  == true) ? "Have Read": "Add To Read"}
             action={() => handleUpdateBook("read")}
           />
           <BookButton
-            buttonText="Wishlist"
+            buttonText={(libraryBook !=  null && libraryBook!.want  == true) ? "On wishlist": "Add to whishlist"}
             action={() => handleUpdateBook("want")}
           />
           <BookButton
-            buttonText="Add To Owned"
+            buttonText={(libraryBook !=  null && libraryBook!.owned  == true) ? "Owned" :"Add To Owned"}
             action={() => handleUpdateBook("own")}
           />
           <SecondaryInformation bookInfo={bookInformation} />

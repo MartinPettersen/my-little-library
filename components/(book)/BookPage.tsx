@@ -23,6 +23,7 @@ const BookPage = ({ type, data }: Props) => {
   const bookInformation = useGetBook(data);
 
   const [libraryBook,setLibraryBook] = useState<BookMark | null>(null)
+  const [bookUpdated, setBookUpdated] = useState<boolean>(false)
 
   const handleUpdateBook = async (subject: string) => {
     const book = await getBook(parseInt(data));
@@ -41,23 +42,20 @@ const BookPage = ({ type, data }: Props) => {
     if (subject == "own") {
       updateBookOwnership(book[0].id, !book[0].owned);
     }
-    
+    setBookUpdated(!bookUpdated)
   };
 
   useEffect(() => {
     const checkForBook = async() => {
-
       const book = await getBook(parseInt(data));
-      
       if (book.length > 0) {
-        console.log("here")
         setLibraryBook(book[0])
       }
     }
 
     checkForBook()
 
-  }, [])
+  }, [bookUpdated])
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

@@ -1,41 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import { getAllBooks } from "../../database/database";
+import { BookMark } from "../../utils/types";
+import { useFocusEffect } from "@react-navigation/native";
 
 type RenderProp = {
-  item: BookMarkType;
+  item: BookMark;
 };
 
-type TempProps = {
-  id: number;
-  isbn: string;
-};
-
-type BookMarkType = {
-  id: number;
-  isbn: number;
-  owned: number;
-  read: number;
-  want: number;
-};
 
 const LibraryPage = () => {
 
-  const [bookList, setBookList] = useState([])
+  const [bookList, setBookList] = useState<BookMark[]>([])
 
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchBooks = async () => {
+        const books = await getAllBooks();
+        setBookList(books);
+        console.log(books)
+      };
 
-    const fetchBooks = async() => {
-
-      
-      const test = await getAllBooks();
-      setBookList(test)
-      console.log(test);
-    }
-
-    fetchBooks()
-  
-  },[])
+      fetchBooks();
+    }, [])
+  );
 
 
 
@@ -59,7 +47,7 @@ const LibraryPage = () => {
       <FlatList
         data={bookList}
         renderItem={renderBookCoverItem}
-        keyExtractor={(item: BookMarkType) => item.id.toString()}
+        keyExtractor={(item: BookMark) => item.id.toString()}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={<Text>No book cover found</Text>}

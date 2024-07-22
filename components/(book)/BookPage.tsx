@@ -6,6 +6,7 @@ import BookDisplay from "./BookDisplay";
 import SecondaryInformation from "./SecondaryInformation";
 import {
   addBook,
+  deleteBook,
   getBook,
   updateBookOwnership,
   updateBookRead,
@@ -22,12 +23,10 @@ const BookPage = ({ type, data }: Props) => {
 
   const handleUpdateBook = async (subject: string) => {
     const book = await getBook(parseInt(data));
-    console.log(book[0]);
 
     if (book.length < 1) {
       await addBook(parseInt(data));
       const book = await getBook(parseInt(data));
-      console.log(book);
     }
 
     if (subject == "read") {
@@ -54,7 +53,7 @@ const BookPage = ({ type, data }: Props) => {
             action={() => handleUpdateBook("read")}
           />
           <BookButton
-            buttonText="Want To Read"
+            buttonText="Wishlist"
             action={() => handleUpdateBook("want")}
           />
           <BookButton

@@ -25,16 +25,13 @@ export const addBook = async (isbn: number) => {
 }
 
 export const getAllBooks = async () => {
-    const allRows = await db.getAllAsync('SELECT * FROM books');
+    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books');
     
-    console.log(allRows)
     return allRows
 }
 
 export const getBook = async (isbn: number) => {
-    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books WHERE isbn = $isbn', {$isbn: isbn});
-    
-    console.log(allRows)
+    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books WHERE isbn = $isbn', {$isbn: isbn});    
     return allRows
 }
 

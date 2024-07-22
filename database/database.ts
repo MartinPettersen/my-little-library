@@ -13,7 +13,7 @@ export const createTables = async () => {
           isbn INTEGER,
           owned BOOLEAN,
           read BOOLEAN,
-          want BOOLEAN,
+          want BOOLEAN
         )`)
 
     

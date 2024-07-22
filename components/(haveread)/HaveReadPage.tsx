@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
-import { getAllBooks, getReadBooks } from "../../database/database";
+import { getReadBooks } from "../../database/database";
 import { BookMark } from "../../utils/types";
 import { useFocusEffect } from "@react-navigation/native";
+import CoverImage from "../(utils)/CoverImage";
 
 type RenderProp = {
   item: BookMark;
@@ -16,6 +17,7 @@ const HaveReadPage = () => {
       const fetchBooks = async () => {
         const books = await getReadBooks();
         setBookList(books);
+        console.log(books);
       };
 
       fetchBooks();
@@ -25,12 +27,7 @@ const HaveReadPage = () => {
   const renderBookCoverItem = ({ item }: RenderProp) => {
     return (
       <View style={styles.displayContainer}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
-          }}
-        />
+        <CoverImage book={item} />
         <Text>{item.isbn}</Text>
       </View>
     );
@@ -38,14 +35,15 @@ const HaveReadPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Books I have Read</Text>
+      <Text style={styles.headerText}>Books I have Read</Text>
       <FlatList
+        contentContainerStyle={styles.flatListContent}
         data={bookList}
         renderItem={renderBookCoverItem}
         keyExtractor={(item: BookMark) => item.id.toString()}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        ListEmptyComponent={<Text>No book cover found</Text>}
+        ListEmptyComponent={<Text style={styles.emptyText}>Looks like you haven't read anything</Text>}
       />
     </View>
   );
@@ -56,16 +54,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
+    paddingTop: 50,
   },
-  text: {
+  headerText: {
+    fontSize: 24,
+    marginBottom: 20,
+    color: "#27272a",
+  },
+  flatListContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyText: {
+    textAlign: "center",
+    fontSize: 18,
     color: "#27272a",
   },
   image: {
     aspectRatio: 1,
-
     height: 200,
-
     backgroundColor: "black",
   },
   displayContainer: {

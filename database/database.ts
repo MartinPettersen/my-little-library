@@ -1,4 +1,5 @@
 import * as SQLite from 'expo-sqlite';
+import { BookMark } from '../utils/types';
 
 
 const db = SQLite.openDatabaseSync('bookDatabase.db');
@@ -19,8 +20,8 @@ export const createTables = async () => {
 };
 
 
-export const addBook = async (isbn: number, owned: boolean, read: boolean, want: boolean) => {
-    await db.execAsync(`INSERT INTO books (isbn, owned, read, want) VALUES (${isbn}, ${owned},${read},${want});`);
+export const addBook = async (isbn: number) => {
+    await db.execAsync(`INSERT INTO books (isbn, owned, read, want) VALUES (${isbn}, ${false},${false},${false});`);
 }
 
 export const getAllBooks = async () => {
@@ -29,6 +30,14 @@ export const getAllBooks = async () => {
     console.log(allRows)
     return allRows
 }
+
+export const getBook = async (isbn: number) => {
+    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books WHERE isbn = $isbn', {$isbn: isbn});
+    
+    console.log(allRows)
+    return allRows
+}
+
 
 export const deleteBook = async ( id: number) => {
     await db.runAsync('DELETE FROM books WHERE id = $id', { $id: id });

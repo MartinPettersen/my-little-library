@@ -2,9 +2,15 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useGetBook } from "../../hooks/useGetBook";
 import BookButton from "./BookButton";
-import BackButton from "../(utils)/BackButton";
 import BookDisplay from "./BookDisplay";
 import SecondaryInformation from "./SecondaryInformation";
+import {
+  addBook,
+  getBook,
+  updateBookOwnership,
+  updateBookRead,
+  updateBookWant,
+} from "../../database/database";
 
 type Props = {
   type: string;
@@ -14,6 +20,26 @@ type Props = {
 const BookPage = ({ type, data }: Props) => {
   const bookInformation = useGetBook(data);
 
+  const handleUpdateBook = async (subject: string) => {
+    const book = await getBook(parseInt(data));
+    console.log(book[0]);
+
+    if (book.length < 1) {
+      await addBook(parseInt(data));
+      const book = await getBook(parseInt(data));
+      console.log(book);
+    }
+
+    if (subject == "read") {
+      updateBookRead(book[0].id, !book[0].read);
+    }
+    if (subject == "want") {
+      updateBookWant(book[0].id, !book[0].want);
+    }
+    if (subject == "own") {
+      updateBookOwnership(book[0].id, !book[0].owned);
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -25,15 +51,15 @@ const BookPage = ({ type, data }: Props) => {
           <BookDisplay bookInfo={bookInformation} />
           <BookButton
             buttonText="Add To Read"
-            action={() => console.log("added to read")}
+            action={() => handleUpdateBook("read")}
           />
           <BookButton
             buttonText="Want To Read"
-            action={() => console.log("added to Want to read")}
+            action={() => handleUpdateBook("want")}
           />
           <BookButton
             buttonText="Add To Owned"
-            action={() => console.log("added to owned")}
+            action={() => handleUpdateBook("own")}
           />
           <SecondaryInformation bookInfo={bookInformation} />
         </>

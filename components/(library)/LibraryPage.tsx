@@ -4,6 +4,7 @@ import { getOwnedBooks } from "../../database/database";
 import { BookMark } from "../../utils/types";
 import { useFocusEffect } from "@react-navigation/native";
 import CoverImage from "../(utils)/CoverImage";
+import BookCard from "../(utils)/BookCard";
 
 type RenderProp = {
   item: BookMark;
@@ -26,10 +27,7 @@ const LibraryPage = () => {
 
   const renderBookCoverItem = ({ item }: RenderProp) => {
     return (
-      <View style={styles.displayContainer}>
-        <CoverImage book={item} />
-        <Text>{item.isbn}</Text>
-      </View>
+      <BookCard book={item} parent="library"/>
     );
   };
 

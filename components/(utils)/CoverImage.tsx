@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     height: 200,
     backgroundColor: "black",
+    borderColor: "#27272a",
+    borderWidth: 1,
   },
   displayContainer: {
     margin: 24,

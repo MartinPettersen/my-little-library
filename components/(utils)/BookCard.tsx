@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CoverImage from "./CoverImage";
-import { BookMark } from "../../utils/types";
+import { BookMark, RootStackParamList } from "../../utils/types";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 type Props = {
   book: BookMark;
@@ -9,15 +10,19 @@ type Props = {
 };
 
 const BookCard = ({ book, parent }: Props) => {
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+
   return (
-    <View style={styles.displayContainer}>
+    <TouchableOpacity style={[styles.displayContainer, styles.shadow]} onPress={() => navigation.navigate("Book", {type: "String", data: book.isbn.toString()})}>
       <CoverImage book={book} />
       <Text style={styles.text}>
         {parent == "library"
           ? `Read: ${book.read ? "Yes" : "No"}`
           : `Owned: ${book.owned ? "Yes" : "No"}`}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -36,6 +41,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#27272a",
     marginBottom: 20,
+  },
+  shadow: {
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 3, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

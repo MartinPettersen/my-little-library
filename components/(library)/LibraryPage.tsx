@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import { getAllBooks } from "../../database/database";
 import { BookMark } from "../../utils/types";
@@ -8,24 +8,20 @@ type RenderProp = {
   item: BookMark;
 };
 
-
 const LibraryPage = () => {
-
-  const [bookList, setBookList] = useState<BookMark[]>([])
+  const [bookList, setBookList] = useState<BookMark[]>([]);
 
   useFocusEffect(
     React.useCallback(() => {
       const fetchBooks = async () => {
         const books = await getAllBooks();
         setBookList(books);
-        console.log(books)
+        console.log(books);
       };
 
       fetchBooks();
     }, [])
   );
-
-
 
   const renderBookCoverItem = ({ item }: RenderProp) => {
     return (

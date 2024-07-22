@@ -35,6 +35,19 @@ export const getBook = async (isbn: number) => {
     return allRows
 }
 
+export const getOwnedBooks = async () => {
+    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books WHERE owned = $owned', {$owned: true});    
+    return allRows
+}
+export const getReadBooks = async () => {
+    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books WHERE read = $read', {$read: true});    
+    return allRows
+}
+
+export const getWishlistedBooks = async () => {
+    const allRows: BookMark[] = await db.getAllAsync('SELECT * FROM books WHERE want = $want', {$want: true});    
+    return allRows
+}
 
 export const deleteBook = async ( id: number) => {
     await db.runAsync('DELETE FROM books WHERE id = $id', { $id: id });

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
-import { getAllBooks } from "../../database/database";
+import { getAllBooks, getOwnedBooks } from "../../database/database";
 import { BookMark } from "../../utils/types";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -14,7 +14,7 @@ const LibraryPage = () => {
   useFocusEffect(
     React.useCallback(() => {
       const fetchBooks = async () => {
-        const books = await getAllBooks();
+        const books = await getOwnedBooks();
         setBookList(books);
         console.log(books);
       };
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 50,
   },
   text: {
     color: "#27272a",

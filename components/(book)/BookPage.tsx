@@ -59,7 +59,6 @@ const BookPage = ({ type, data }: Props) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text>Hei</Text>
       {!bookInformation ? (
         <Text>Loading...</Text>
       ) : (

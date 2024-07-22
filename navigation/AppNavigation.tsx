@@ -78,19 +78,7 @@ const AppNavigation = () => {
               ),
             }}
           />
-          <Tab.Screen
-            name={"library"}
-            component={LibraryScreen}
-            options={{
-              tabBarIcon: ({ focused }) => (
-                <Feather
-                  name={focused ? "book-open" : "book"}
-                  size={25}
-                  color={focused ? "white" : "#27272a"}
-                />
-              ),
-            }}
-          />
+
         </Tab.Navigator>
       </BlurView>
     </NavigationContainer>

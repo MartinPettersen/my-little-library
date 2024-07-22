@@ -17,12 +17,6 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <TouchableOpacity
         style={[styles.button, styles.shadow]}
-        onPress={() => navigation.navigate("Scan")}
-      >
-        <Text style={styles.buttonText}>Scan Book</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.button, styles.shadow]}
         onPress={() => navigation.navigate("Library")}
       >
         <Text style={styles.buttonText}>My Library</Text>
